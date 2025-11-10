@@ -50,28 +50,83 @@
           <div class="form-card">
             <h3 data-en="Let's See If You Qualify! 🚀" data-es="¡Veamos Si Calificas! 🚀">Let's See If You Qualify! 🚀</h3>
             
-            <!-- Google Form iframe -->
-            <div class="google-form-container">
-              <iframe 
-                src="https://docs.google.com/forms/d/e/1FAIpQLSdzW6diMdoLSDFOw3NoIUCNgEIIu7VaRaKRs2HZ6uqqKgxV8A/viewform?embedded=true" 
-                width="100%" 
-                height="600" 
-                frameborder="0" 
-                marginheight="0" 
-                marginwidth="0"
-                style="border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2);">
-                Loading…
-              </iframe>
-            </div>
+            <!-- Custom Form -->
+            <form id="qualificationForm" class="qualification-form">
+              <div class="form-group">
+                <label for="parentFirstName" data-en="Parent/Guardian First Name *" data-es="Nombre del Padre/Tutor *">Parent/Guardian First Name *</label>
+                <input 
+                  type="text" 
+                  id="parentFirstName" 
+                  name="parentFirstName" 
+                  required
+                  placeholder=""
+                  data-placeholder-en="Enter first name"
+                  data-placeholder-es="Ingrese el nombre">
+              </div>
+              
+              <div class="form-group">
+                <label for="parentLastName" data-en="Parent/Guardian Last Name *" data-es="Apellido del Padre/Tutor *">Parent/Guardian Last Name *</label>
+                <input 
+                  type="text" 
+                  id="parentLastName" 
+                  name="parentLastName" 
+                  required
+                  placeholder=""
+                  data-placeholder-en="Enter last name"
+                  data-placeholder-es="Ingrese el apellido">
+              </div>
+              
+              <div class="form-group">
+                <label for="email" data-en="Email Address *" data-es="Dirección de Correo Electrónico *">Email Address *</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  required
+                  placeholder=""
+                  data-placeholder-en="your.email@example.com"
+                  data-placeholder-es="su.correo@ejemplo.com">
+              </div>
+              
+              <div class="form-group">
+                <label for="phone" data-en="Phone Number *" data-es="Número de Teléfono *">Phone Number *</label>
+                <input 
+                  type="tel" 
+                  id="phone" 
+                  name="phone" 
+                  required
+                  placeholder=""
+                  data-placeholder-en="(555) 123-4567"
+                  data-placeholder-es="(555) 123-4567">
+              </div>
+              
+              <div class="form-group">
+                <label for="childAge" data-en="Child's Age *" data-es="Edad del Niño *">Child's Age *</label>
+                <select id="childAge" name="childAge" required>
+                  <option value="" data-en="Select age" data-es="Seleccione la edad">Select age</option>
+                  <option value="12" data-en="12 years old" data-es="12 años">12 years old</option>
+                  <option value="13" data-en="13 years old" data-es="13 años">13 years old</option>
+                  <option value="14" data-en="14 years old" data-es="14 años">14 years old</option>
+                  <option value="15" data-en="15 years old" data-es="15 años">15 years old</option>
+                  <option value="16" data-en="16 years old" data-es="16 años">16 years old</option>
+                  <option value="17" data-en="17 years old" data-es="17 años">17 years old</option>
+                </select>
+              </div>
+              
+              <button type="submit" class="cta-button">
+                <i class="fas fa-paper-plane"></i>
+                <span data-en="Submit Application" data-es="Enviar Solicitud">Submit Application</span>
+              </button>
+            </form>
             
             <div class="trust-badges">
               <div class="badge">
                 <i class="fas fa-shield-alt"></i>
-                <span>HIPAA Compliant</span>
+                <span data-en="HIPAA Compliant" data-es="Cumple con HIPAA">HIPAA Compliant</span>
               </div>
               <div class="badge">
                 <i class="fas fa-lock"></i>
-                <span>Privacy Protected</span>
+                <span data-en="Privacy Protected" data-es="Privacidad Protegida">Privacy Protected</span>
               </div>
             </div>
           </div>
@@ -233,7 +288,7 @@
   <div class="language-toggle">
     <button id="languageToggle" onclick="toggleLanguage()">
       <i class="fas fa-globe"></i>
-      <span id="currentLanguage">EN</span>
+      <span id="currentLanguage" data-en="Cambiar a Español" data-es="Change to English">Cambiar a Español</span>
     </button>
   </div>
 

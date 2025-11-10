@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
   } else {
     // Show language modal on first visit
     document.getElementById('languageModal').classList.remove('hidden');
+    // Set default placeholders in English
+    updateLanguage();
   }
 });
 
@@ -55,7 +57,12 @@ function updateLanguage() {
   });
 
   // Update language toggle button
-  document.getElementById('currentLanguage').textContent = currentLanguage.toUpperCase();
+  const languageToggle = document.getElementById('currentLanguage');
+  if (languageToggle) {
+    languageToggle.textContent = currentLanguage === 'en' ? 
+      languageToggle.getAttribute('data-en') : 
+      languageToggle.getAttribute('data-es');
+  }
   
   // Update page direction if needed
   document.documentElement.lang = currentLanguage;
@@ -116,7 +123,10 @@ document.addEventListener('DOMContentLoaded', function() {
           childAge: data.childAge
         });
         e.preventDefault();
-        alert('Please fill in all required fields.');
+        const errorMsg = currentLanguage === 'en' 
+          ? 'Please fill in all required fields.' 
+          : 'Por favor complete todos los campos requeridos.';
+        alert(errorMsg);
         return;
       }
       
@@ -124,7 +134,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(data.email)) {
         e.preventDefault();
-        alert('Please enter a valid email address.');
+        const errorMsg = currentLanguage === 'en' 
+          ? 'Please enter a valid email address.' 
+          : 'Por favor ingrese una dirección de correo electrónico válida.';
+        alert(errorMsg);
         return;
       }
       
@@ -132,7 +145,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const phoneRegex = /^[\d\s\-\+\(\)]+$/;
       if (!phoneRegex.test(data.phone)) {
         e.preventDefault();
-        alert('Please enter a valid phone number.');
+        const errorMsg = currentLanguage === 'en' 
+          ? 'Please enter a valid phone number.' 
+          : 'Por favor ingrese un número de teléfono válido.';
+        alert(errorMsg);
         return;
       }
       
@@ -142,7 +158,10 @@ document.addEventListener('DOMContentLoaded', function() {
       // Show loading state
       const submitButton = form.querySelector('.cta-button');
       const originalText = submitButton.innerHTML;
-      submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+      const loadingText = currentLanguage === 'en' 
+        ? '<i class="fas fa-spinner fa-spin"></i> <span>Submitting...</span>' 
+        : '<i class="fas fa-spinner fa-spin"></i> <span>Enviando...</span>';
+      submitButton.innerHTML = loadingText;
       submitButton.disabled = true;
       
       // Auto-submit to Google Forms
@@ -248,7 +267,10 @@ function submitToGoogleForms(data, originalText, submitButton) {
   document.getElementById('qualificationForm').reset();
   
   // Show success message on button
-  submitButton.innerHTML = '<i class="fas fa-check-circle"></i> Thanks for submission! The team will contact you soon.';
+  const successMsg = currentLanguage === 'en'
+    ? '<i class="fas fa-check-circle"></i> <span>Thanks for submission! The team will contact you soon.</span>'
+    : '<i class="fas fa-check-circle"></i> <span>¡Gracias por su envío! El equipo se pondrá en contacto pronto.</span>';
+  submitButton.innerHTML = successMsg;
   submitButton.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
   submitButton.disabled = true;
   
